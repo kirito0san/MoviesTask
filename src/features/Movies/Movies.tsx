@@ -15,28 +15,32 @@ export default function Products() {
   }, [dispatch, currentPage]);
   if (status == "loading") return <div>loading</div>;
   return (
-    <div className="grid grid-cols-1 gap-4 justify-between md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {movies.map((movie: movie) => (
-        <Link
-          to={`/movie/${movie.id}`}
-          key={movie.id}
-          className="overflow-hidden rounded-lg bg-main-bg hover:bg-[#dbd9d9] duration-300"
-        >
-          <div className="p-2">
-            <img
-              className="mx-auto w-[300px] object-cover h-[400px]"
-              src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
-              alt={movie.title}
-            />
-          </div>
+    <div className="flex flex-col gap-5">
+      <div className="grid grid-cols-1 gap-4 justify-between md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {movies.map((movie: movie) => (
+          <Link
+            to={`/movie/${movie.id}`}
+            key={movie.id}
+            className="overflow-hidden rounded-lg bg-main-bg hover:bg-[#dbd9d9] duration-300"
+          >
+            <div className="p-2">
+              <img
+                className="mx-auto w-[300px] object-cover h-[400px]"
+                src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                alt={movie.title}
+              />
+            </div>
 
-          <div className="p-5">
-            <p className="mb-3 text-2xl font-bold">{movie.title}</p>
-            <p className="truncated-text">{movie.overview}</p>
-          </div>
-        </Link>
-      ))}
-      <PaginationDemo />
+            <div className="p-5">
+              <p className="mb-3 text-2xl font-bold">{movie.title}</p>
+              <p className="truncated-text">{movie.overview}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <div className="w-[300px] mx-auto">
+        <PaginationDemo />
+      </div>
     </div>
   );
 }
