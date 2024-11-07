@@ -30,9 +30,9 @@ export default function Similar() {
                   to={`/movie/${movie.id}`}
                   className="block overflow-hidden rounded-lg bg-main-bg"
                 >
-                  <div className="pt-2 w-full aspect-w-16 aspect-h-9">
+                  <div className="p-3">
                     <img
-                      className="object-contain mx-auto max-h-[400px]"
+                      className="mx-auto object-cover w-[200px] h-[250px] md:w-[300px]  md:h-[400px]"
                       src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
                       alt={movie.title}
                     />

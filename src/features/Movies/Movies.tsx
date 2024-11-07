@@ -22,9 +22,9 @@ export default function Products() {
           key={movie.id}
           className="overflow-hidden rounded-lg bg-main-bg hover:bg-[#dbd9d9] duration-300"
         >
-          <div className="pt-2 w-full aspect-w-16 aspect-h-9">
+          <div className="p-2">
             <img
-              className="object-contain mx-auto max-h-[400px]"
+              className="mx-auto w-[300px] object-cover h-[400px]"
               src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
               alt={movie.title}
             />
