@@ -5,7 +5,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/Pagination";
+} from "./ui/Pagination";
 import { pageChange } from "@/features/Movies/MoviesSlice";
 import { AppDispatch, RootState } from "@/store/store";
 import { useEffect } from "react";
@@ -19,7 +19,7 @@ export function PaginationDemo() {
     window.scrollTo(0, 0);
   }, [currentPage]);
   return (
-    <Pagination className="bg-main-bg rounded-lg">
+    <Pagination className="rounded-lg bg-main-bg">
       <PaginationContent>
         {currentPage > 1 ? (
           <PaginationItem>
