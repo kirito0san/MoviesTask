@@ -17,10 +17,10 @@ export default function ProductsDetails() {
 
   return (
     <>
-      <div className="flex overflow-hidden flex-col gap-4 rounded-lg lg:flex-row bg-main-bg">
-        <div className="w-full">
+      <div className="flex overflow-hidden flex-col gap-4 rounded-lg 2xl:flex-row bg-main-bg">
+        <div className="px-3 w-full aspect-w-16 aspect-h-9">
           <img
-            className="object-cover w-full h-full"
+            className="object-contain mx-auto md:min-h-[400px] max-h-[400px]"
             src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
             alt={movie.title}
           />
