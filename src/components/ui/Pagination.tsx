@@ -35,7 +35,7 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }: Pagina
   <p
     aria-current={isActive ? "page" : undefined}
     className={
-      " cursor-pointer " +
+      " cursor-pointer text-[10px] md:text-base w-fit !p-2 md:p-2 " +
       cn(
         buttonVariants({
           variant: isActive ? "outline" : "ghost",

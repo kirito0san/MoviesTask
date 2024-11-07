@@ -32,13 +32,13 @@ export default function Products() {
             </div>
 
             <div className="p-5">
-              <p className="mb-3 text-2xl font-bold">{movie.title}</p>
+              <p className="mb-3 text-2xl font-bold truncated-text">{movie.title}</p>
               <p className="truncated-text">{movie.overview}</p>
             </div>
           </Link>
         ))}
       </div>
-      <div className="w-[300px] mx-auto">
+      <div className="md:w-[350px]  mx-auto">
         <PaginationDemo />
       </div>
     </div>

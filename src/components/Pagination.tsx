@@ -38,7 +38,22 @@ export function PaginationDemo() {
           )}
         </PaginationItem>
         <PaginationItem>
+          {currentPage > 1 ? (
+            <PaginationLink onClick={() => dispatch(pageChange(currentPage - 1))}>
+              {currentPage - 1}
+            </PaginationLink>
+          ) : (
+            ""
+          )}
+        </PaginationItem>
+
+        <PaginationItem>
           <PaginationLink isActive>{currentPage}</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink onClick={() => dispatch(pageChange(currentPage + 1))}>
+            {currentPage + 1}
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink onClick={() => dispatch(pageChange(currentPage + 2))}>
