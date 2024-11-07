@@ -22,7 +22,11 @@ export default function Products() {
           key={movie.id}
           className="bg-main-bg  md:w-[45%] rounded-lg overflow-hidden lg:w-[30%]"
         >
-          <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title} />
+          <img
+            className="w-full h-[250px] md:h-[300px]"
+            src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+            alt={movie.title}
+          />
           <div className="p-5">
             <p className="mb-3 text-2xl font-bold">{movie.title}</p>
             <p className="truncated-text">{movie.overview}</p>
