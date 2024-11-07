@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.truncated-text {
+  width: 100%; /* Adjust width as needed */
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow: hidden; /* Hides the text that exceeds the container */
+  text-overflow: ellipsis; /* Adds ellipses at the end */
+}
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+}
