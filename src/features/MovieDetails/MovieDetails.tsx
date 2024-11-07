@@ -20,7 +20,7 @@ export default function ProductsDetails() {
       <div className="flex overflow-hidden flex-col gap-4 rounded-lg xl:flex-row bg-main-bg">
         <div>
           <img
-            className=" object-cover mx-auto w-[300px]  h-[400px]"
+            className=" object-cover object-center mx-auto min-w-[250px]  h-[400px]  md:w-[400px] md:min-w-[400px]  md:h-[500px]"
             src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
             alt={movie.title}
           />
