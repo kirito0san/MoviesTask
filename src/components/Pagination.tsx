@@ -5,7 +5,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "./ui/Pagination";
+} from "./ui/Pagination.tsx";
 import { pageChange } from "@/features/Movies/MoviesSlice";
 import { AppDispatch, RootState } from "@/store/store";
 import { useEffect } from "react";
