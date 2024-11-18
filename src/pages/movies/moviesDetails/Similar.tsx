@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
-import { fetchSimilarMovies } from "./similarMoviesSlice";
+
 import { Link, useParams } from "react-router-dom";
 import {
   Carousel,
@@ -11,9 +10,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { AppDispatch, RootState } from "@/redux/store/store";
+import { fetchSimilarMovies } from "@/redux/slices/movies/similarMovies";
+
 export default function Similar() {
   const dispatch = useDispatch<AppDispatch>();
-  const similarMovies = useSelector((state: RootState) => state.similar.similarMovies);
+  const similarMovies = useSelector((state: RootState) => state.movies.similarMovies.similarMovies);
+
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchSimilarMovies(Number(id)));
@@ -39,7 +42,9 @@ export default function Similar() {
                   </div>
                   <div className="p-5">
                     <p className="mb-3 font-bold text-md">{movie.title}</p>
-                    <p className="truncated-text">{movie.overview}</p>
+                    <p className="truncated-text">
+                      {movie.overview ? movie.overview : <div>no data for now</div>}
+                    </p>
                   </div>
                 </Link>
               </CarouselItem>

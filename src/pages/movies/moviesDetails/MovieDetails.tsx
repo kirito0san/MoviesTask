@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { AppDispatch, RootState } from "../../store/store";
-import { fetchMovie } from "./movieSlice";
-import Similar from "./similarMovies/Similar";
+
+import Similar from "./Similar";
+import { AppDispatch, RootState } from "@/redux/store/store";
+import { fetchOneMovie } from "@/redux/slices/movies/oneMovie";
 
 export default function ProductsDetails() {
   const { id } = useParams();
 
   const dispatch = useDispatch<AppDispatch>();
-  const movie = useSelector((state: RootState) => state.MovieDetail.movie);
+  const { movie } = useSelector((state: RootState) => state.movies.movie);
   useEffect(() => {
-    dispatch(fetchMovie(Number(id)));
+    dispatch(fetchOneMovie(Number(id)));
     window.scrollTo(0, 0);
   }, [dispatch, id]);
 
