@@ -27,13 +27,7 @@ const initialState: MoviesState = {
 const Movies = createSlice({
   name: "Movies",
   initialState,
-  reducers: {
-    pageChange: (state, action) => {
-      if (state.allMovies.meta) {
-        state.allMovies.meta.page = action.payload;
-      }
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     AllMoviesHandler(builder);
     searchMoviesHandler(builder);
@@ -42,4 +36,3 @@ const Movies = createSlice({
   },
 });
 export default Movies.reducer;
-export const { pageChange } = Movies.actions;
