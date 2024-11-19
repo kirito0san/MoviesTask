@@ -1,40 +1,38 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { pageChange } from "../../redux/slices/movies/MoviesSlice";
 import { Link } from "react-router-dom";
 import { movie } from "@/types/types";
 import { AppDispatch, RootState } from "@/redux/store/store";
-
 import { fetchSearchMovies } from "@/redux/slices/movies/searchMovies";
 import { fetchAllMovies } from "@/redux/slices/movies/allMovies";
 import ReactPaginate from "react-paginate";
-
 export default function Products() {
   const dispatch = useDispatch<AppDispatch>();
   const { movies, loading, meta } = useSelector((state: RootState) => state.movies.allMovies);
-  console.log(meta);
   const searchInput = useRef<HTMLInputElement | null>(null);
-
   const handleSearch = () => {
     if (searchInput.current) {
       const query = searchInput.current.value;
       if (query) {
         dispatch(fetchSearchMovies({ query, page: 1 }));
+      } else {
+        dispatch(fetchAllMovies(1));
       }
     }
-
-    if (searchInput.current && searchInput.current.value === "") {
-      dispatch(fetchAllMovies(1));
+  };
+  const handlePage = (page: number) => {
+    if (searchInput.current) {
+      const query = searchInput.current.value;
+      if (query) {
+        dispatch(fetchSearchMovies({ query, page: page + 1 }));
+      } else {
+        dispatch(fetchAllMovies(page + 1));
+      }
     }
   };
   useEffect(() => {
-    if (searchInput.current && searchInput.current.value !== "") {
-      const query = searchInput.current.value;
-      dispatch(fetchSearchMovies({ query, page: meta.page }));
-    } else {
-      dispatch(fetchAllMovies(meta.page));
-    }
-  }, [dispatch, meta.page]);
+    dispatch(fetchAllMovies(1));
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col gap-5">
@@ -81,7 +79,7 @@ export default function Products() {
         </div>
       )}
       <div className="md:w-[350px]  mx-auto">
-        {meta && meta.total_pages < 20 ? (
+        {meta && meta.total_pages && meta.total_pages <= 1 ? (
           ""
         ) : (
           <ReactPaginate
@@ -92,9 +90,9 @@ export default function Products() {
             previousLinkClassName="p-[3px] duration-300 border border-header bg-pagination  text-header text-center rounded-md hover:bg-btn-bg text-white hover:text-pagination text-xs md:text-xl"
             nextLinkClassName="p-[3px] duration-300 border  border-header bg-pagination  text-header text-center rounded-md hover:bg-btn-bg text-white hover:text-pagination text-xs md:text-xl"
             pageLinkClassName="p-[3px] hover:text-white bg-white duration-300 border border-header  md:min-w-[2.5rem] bg-pagination  text-header text-center rounded-md hover:bg-btn-bg hover:text-pagination inline-block text-xs md:text-xl"
-            pageCount={meta.total_pages > 500 ? 500 : meta.total_pages}
-            onPageChange={({ selected }) => dispatch(pageChange(selected + 1))}
-            forcePage={meta.page - 1}
+            pageCount={meta?.total_pages ?? 1 > 500 ? 500 : meta?.total_pages ?? 1}
+            onPageChange={({ selected }) => handlePage(selected)}
+            forcePage={(meta?.page ?? 1) - 1}
           />
         )}
       </div>

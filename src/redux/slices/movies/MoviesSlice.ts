@@ -9,7 +9,7 @@ const initialState: MoviesState = {
   allMovies: {
     loading: true,
     error: null,
-    meta: { page: 1, total_pages: 1, total_results: 0 },
+    meta: null,
     movies: [],
   },
   movie: {
@@ -21,7 +21,7 @@ const initialState: MoviesState = {
     loading: true,
     error: null,
     similarMovies: [],
-    totalPages: 1,
+    totalPages: null,
   },
 };
 const Movies = createSlice({
@@ -29,7 +29,9 @@ const Movies = createSlice({
   initialState,
   reducers: {
     pageChange: (state, action) => {
-      state.allMovies.meta.page = action.payload;
+      if (state.allMovies.meta) {
+        state.allMovies.meta.page = action.payload;
+      }
     },
   },
   extraReducers: (builder) => {

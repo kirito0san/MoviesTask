@@ -1,4 +1,4 @@
-import { mainUrl } from "@/redux/api";
+import { authorization, mainUrl } from "@/redux/api";
 import { MoviesState } from "@/types/types";
 import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -15,7 +15,7 @@ export const fetchSearchMovies = createAsyncThunk(
         page: page,
       },
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZDNjZjI0NDU0MDU2MWQxOWE3ZjFiNGJlZjdiM2MyYiIsIm5iZiI6MTczMDk2ODI0OC42NTg2MTU0LCJzdWIiOiI2NTdkZTA1MTVmMmRiMTA2YjZkZGRlZGEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.hqUNYo_EV6XLpySmyyA-Yj4IA8EZYLfjf6Ok6yuAt54`,
+        Authorization: authorization,
       },
     });
     return response.data;
@@ -32,8 +32,6 @@ export const searchMoviesHandler = (builder: ActionReducerMapBuilder<MoviesState
       const { results, ...rest } = action.payload;
       state.allMovies.meta = rest;
       state.allMovies.movies = results;
-      state.allMovies.meta.page = action.payload.page;
-      state.allMovies.meta.total_pages = action.payload.total_pages;
     })
     .addCase(fetchSearchMovies.rejected, (state, action) => {
       state.allMovies.loading = false;

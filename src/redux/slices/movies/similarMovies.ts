@@ -1,4 +1,4 @@
-import { mainUrl } from "@/redux/api";
+import { authorization, mainUrl } from "@/redux/api";
 import { MoviesState } from "@/types/types";
 import { ActionReducerMapBuilder, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -9,7 +9,7 @@ export const fetchSimilarMovies = createAsyncThunk(
     const response = await axios.get(`${mainUrl}/movie/${movieId}/similar?language=en-US&page=1`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZDNjZjI0NDU0MDU2MWQxOWE3ZjFiNGJlZjdiM2MyYiIsIm5iZiI6MTczMDk2ODI0OC42NTg2MTU0LCJzdWIiOiI2NTdkZTA1MTVmMmRiMTA2YjZkZGRlZGEiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.hqUNYo_EV6XLpySmyyA-Yj4IA8EZYLfjf6Ok6yuAt54`,
+        Authorization: authorization,
       },
     });
     return response.data.results;

@@ -59,14 +59,14 @@ export interface MovieDetail {
 export interface movie {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: number[]; // Array of genre IDs
+  genre_ids: number[];
   id: number;
   original_language: string;
   original_title: string;
   overview: string;
   popularity: number;
   poster_path: string;
-  release_date: string; // Date as a string, e.g., "2024-10-09"
+  release_date: string;
   title: string;
   video: boolean;
   vote_average: number;
@@ -89,11 +89,11 @@ export interface similarMovies {
   loading: boolean;
   similarMovies: movie[];
   error: string | null;
-  totalPages: number;
+  totalPages: number | null;
 }
 export interface allMovies {
   loading: boolean;
-  meta: { page: number; total_pages: number; total_results: number };
+  meta: { page: number | null; total_pages: number | null; total_results: number | null } | null;
   error: string | null;
   movies: movie[];
 }
